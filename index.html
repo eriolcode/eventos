@@ -128,7 +128,7 @@
   }
   @keyframes spin { to{transform:rotate(360deg);} }
 
-  .form-sec { display:none; }
+  .form-sec { display:none; margin-top: 32px; }
   .form-sec.on { display:block; animation:up .3s ease; }
   @keyframes up { from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);} }
 
@@ -149,11 +149,19 @@
   input:focus, select:focus { border-color:var(--accent); }
   select option { background:#1c1c1c; }
 
+  /* Por defecto DOS columnas (PC) */
   .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-
   .actions { display:flex; gap:12px; margin-top:24px; }
 
-  .btn-save {
+  /* MÓVIL — una columna */
+  @media (max-width: 480px) {
+    .wrap { padding: 24px 16px 80px; }
+    h1 { font-size: 1.3rem; }
+    .row { grid-template-columns: 1fr; gap: 0; }
+    .actions { flex-direction: column-reverse; }
+    .btn-save, .btn-cancel { flex: unset; width: 100%; }
+    .paste-hint { display: none !important; }
+  }
     flex:2; padding:18px; background:var(--accent); color:#0f0f0f;
     border:none; border-radius:var(--radius);
     font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:800;
@@ -392,7 +400,7 @@
   }
 
   // ⚠️ CAMBIA ESTA URL por la de tu Apps Script después de re-implementar
-  const API_URL = 'https://script.google.com/macros/s/AKfycby5Ww8U-w3wXQ-SeydHFknbcW08LLDiTybx7Fg6xqbmdXDFYI-uTWYd7TJUSMtAkEva/exec';
+  const API_URL = 'https://script.google.com/macros/s/AKfycbyFSuctXkbLjuEiMIn9ufpSHOtrobGblBbaUFSttH8ooOviR-9135jUOuEGC5oO6Cgm/exec';
 
   var tab = 'text', b64 = null, mime = null;
 
